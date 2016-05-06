@@ -17,30 +17,30 @@ CONST_DATA = [
     },
     {
         'pin': 2,
-        'name': 'Shane\'s  Monitor',
+        'name': 'Ceiling Fan',
         'type': 'switch'
     },
     {
         'pin': 3,
-        'name': 'Shane\'s  Monitor',
+        'name': 'Air Conditioner',
         'type': 'switch'
     },
     {
         'pin': 20,
-        'name': 'Shane\'s  Monitor',
+        'name': 'Refrigerator',
         'type': 'switch'
     },
     {
         'pin': 21,
-        'name': 'Shane\'s  Monitor',
+        'name': 'Alarm',
         'type': 'switch'
     }
 ]
 
 # Functions
-def gpioToString(output):
-    if output == 1: return 'off'
-    return 'on'
+def gpioToBool(output):
+    if output == 1: return False
+    return True
 
 # Init
 GPIO.setmode(GPIO.BCM)
@@ -52,5 +52,5 @@ for i in CONST_DATA:
 
 # Main
 for i in CONST_DATA:
-    i['state'] = gpioToString(GPIO.input(i['pin']))
+    i['isOn'] = gpioToBool(GPIO.input(i['pin']))
 print (json.dumps(CONST_DATA))
